@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%block content%}
+{%if messages%}
+<br>
+<div class="container">
+    <div class="alert alert-danger" role="alert" style="width: 200px;text-align: center;margin-left: 500px;">
+        {%for message in messages%}
+
+        {{message}} {{name}}
+
+        {%endfor%}
+    </div>
+</div>
+{%endif%}
+<div class="container" style="border: 2px solid black;">
+    {%for p in posts%}
+    <br>
+    <div style="border: 2px solid black;padding-left: 30px;">
+        <h2 align="center">{{p.title}}</h2>
+        <ul>
+            <li>Author : {{p.author}}</li>
+            <li>Content : {{p.content}}</li>
+            <li>Role : {{p.role}}</li>
+        </ul>
+    </div>
+    <br>
+    {%endfor%}
+</div>
+{%endblock%}

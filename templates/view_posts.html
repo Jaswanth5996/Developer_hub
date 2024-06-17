@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+{%block content%}
+<br><br>
+<div class="container" style="border: 2px solid black;border-radius: 20px;">
+    <a href="{%url 'posts'%}" ><button style="margin-top: 10px;margin-bottom: 10px;" >Add New Post</button></a>
+    {%for p in posts%}
+    <br>
+    <div style="border: 2px solid black;padding-left: 30px;border-radius: 20px;">
+    <h2 align="center"><a href="{%url 'detail' p.pk%}" style="text-decoration: none;"> {{p.title}}</a></h2>
+    <ul>
+        <li>Author : {{p.author}}</li>
+        <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.pk%}"> show more...</a></li>
+        <li>Role : {{p.role}}</li>
+    </ul>
+    <a href="{%url 'edit' p.pk%}"><button>Edit Post</button></a>
+    <br><br>
+    </div>
+    {%endfor%}
+    <br>
+</div>
+{%endblock%}
