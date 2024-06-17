@@ -9,57 +9,68 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{%url "home"%}">BlogApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="#">BlogApp</a>
+            <button id="navbarSupportedContent" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="role">Add a role</a>
+                        <a class="nav-link" href="{% url 'role' %}">Add a role</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                           aria-expanded="false">
                             Dropdown
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                    {%if user.is_authenticated%}
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
-                    </li>
-                    {%else%}
-                    <li class="nav-item">
-                        <a class="nav-link" href="signup">Signup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
-                    </li>
-                    {%endif%}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
-                <form class="d-flex" role="search" method="post" action="{%url 'filter'%}">
-                    {%csrf_token%}
-                    {{search_form}}
-                    <button class="btn btn-outline-success" type="submit" style="margin-left:6px ;">Search</button>
+                <form class="d-flex" role="search" method="post" action="{% url 'filter' %}">
+                    {% csrf_token %}
+                    {{ search_form }}
+                    <button class="btn btn-outline-success" type="submit" style="margin-left: 6px;">Search</button>
                 </form>
             </div>
         </div>
     </nav>
+    <br><br>
+    <script>
+        $(document).ready(function () {
+            // Manually initialize the collapse component
+            var myCollapse = new bootstrap.Collapse(document.getElementById('navbarSupportedContent'), {
+                toggle: false  // Ensure toggle is false to handle the toggle manually
+            });
+    
+            // Toggle the collapse component on button click
+            $('#navbarSupportedContentToggle').click(function () {
+                myCollapse.toggle();
+            });
+        });
+    </script>
     {%if messages%}
     {%if user.is_authenticated%}
     <br>
@@ -88,8 +99,6 @@
 
     {%block content%}
     {%endblock%}
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-    integrity="sha384-VgdJf3uUr2RR5lW5kz4+nT9r1CigMmS5w93fj95DRv3k3jWsVQ5+8aqwu0Q1OARx" crossorigin="anonymous"></script>
 </body>
 
 </html>
