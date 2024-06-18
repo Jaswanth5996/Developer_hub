@@ -1,7 +1,10 @@
 {%extends "base.html"%}
 {%load crispy_forms_tags%}
 {%block content%}
-<div class="container" style="width: 500px;">
+<br>
+<div class="container" style="width: 500px;margin-top:30px;">
+    <h1 align="center">Signup!</h1>
+    <br>
 <form method="post" autocomplete="off">
     {%csrf_token%}
     {{form|crispy}}

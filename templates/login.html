@@ -6,13 +6,19 @@
 {{message}}
 {%endfor%}
 {%endif%}
-<div class="container" style="margin-top: 40px;">
-<form method="post" autocomplete="off">
+<div class="container" style="margin-top: 40px;text-align:center;">
+    <h1 align="left">Login!</h1>
+    <br>
+<form method="post" autocomplete="off" style="text-align:left;">
     {%csrf_token%}
-    <label>Username:</label>
+    <label>Username:
     <input type="text" name="username" placeholder="Username">
-    <label>Password:</label>
+</label>
+<br><br>
+    <label>Password:
     <input type="password" name="password" placeholder="Password">
+</label>
+<br><br>
     <button type="submit">Submit</button>
 </form>
 </div>

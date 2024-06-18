@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-
+{%load crispy_forms_tags%}
 {% block content %}
-<h1>Create New Post</h1>
-<form method="post">
+<div class="container" style="margin-top:30px;width: 700px;">
+    <h1 align="center">Create New Post</h1>
+    <br>
+    <form method="post">
     {% csrf_token %}
-    {{ form.as_p }} <!-- Ensure proper rendering of the form fields -->
+    {{ form|crispy}} <!-- Ensure proper rendering of the form fields -->
     <button type="submit">Create Post</button>
 </form>
+<button href="{%url 'home'%}">cancel</button>
+</div>
 {% endblock %}
