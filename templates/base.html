@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootswatch.com/5/sandstone/bootstrap.min.css">
     <title>Blogapp</title>
+    <style>
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .alert {
+            text-align: center;      /* Center align text inside the alert */
+        }
+    </style>
 </head>
 
 <body>
@@ -61,8 +71,8 @@
     {%if messages%}
     {%if user.is_authenticated%}
     <br>
-    <div class="container">
-        <div class="alert alert-danger" role="alert" style="width: 200px;text-align: center;margin-left: 500px;background-color: rgb(8, 229, 41);">
+    <div class="flex">
+        <div class="alert alert-success " role="alert" >
             {%for message in messages%}
 
             {{message}}
@@ -72,8 +82,8 @@
     </div>
     {%else%}
     <br>
-    <div class="container">
-        <div class="alert alert-danger " role="alert" style="width: 200px;text-align: center;margin-left: 200px;">
+    <div class="flex">
+        <div class="alert alert-danger " role="alert" >
             {%for message in messages%}
 
             {{message}}
