@@ -27,6 +27,10 @@ def my_view(request):
 class Detailview(DetailView):
     template_name = "detail.html"
     model = Post
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user.username
+        return context
 
 
 class Deleteview(DeleteView):
@@ -34,18 +38,28 @@ class Deleteview(DeleteView):
     model = Post
     success_url = reverse_lazy("home")
 
-
+@login_required(login_url="login")
 def post_view(request):
+    posts = Post.objects.filter(author=request.user)
+    print(posts)
+    if len(posts)==0:
+        head="Nothing to show"
+    else:
+        head="My Posts"
+    form = Search()
+    return render(request, "view_posts.html", {"posts": posts, "search_form": form,"head":head})
+
+
+def home_view(request):
     posts = Post.objects.all()
     form = Search()
-    return render(request, "view_posts.html", {"posts": posts, "search_form": form})
-
+    return render(request, "view_posts.html", {"posts": posts, "search_form": form,"head":"Blog Posts"})
 
 class Update_view(LoginRequiredMixin, UpdateView):
     login_url = "login"
     model = Post
     template_name = "edit.html"
-    fields = ["title", "author", "content"]
+    fields = ["title", "content"]
     success_url = "/"
     heading = "Edit Post"
 
@@ -70,7 +84,7 @@ def LoginView(request):
         if log is not None:
             login(request, log)
             print("Authentication successful, redirecting to home...")
-            messages.success(request, "Logged in :)")
+            messages.success(request, "Welcome back "+username+" !")
             return redirect("home")
         else:
             messages.error(request, "Invalid username or password.")

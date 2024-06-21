@@ -10,10 +10,12 @@ from .views import (
     SpecialView,
     Detailview,
     Deleteview,
+    home_view,
 )
 
 urlpatterns = [
-    path("", post_view, name="home"),
+    path("user_post", post_view, name="user_post"),
+    path("",home_view,name="home"),
     path("posts", my_view, name="posts"),
     path("edit/<int:pk>", Update_view.as_view(), name="edit"),
     path("role", add_role, name="role"),
