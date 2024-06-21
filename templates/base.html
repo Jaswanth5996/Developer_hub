@@ -8,9 +8,9 @@
     <title>Blogapp</title>
     <style>
         .flex {
-            display: flex;
             justify-content: center;
             align-items: center;
+           
         }
         .alert {
             text-align: center;      /* Center align text inside the alert */
@@ -71,7 +71,7 @@
     {%if messages%}
     {%if user.is_authenticated%}
     <br>
-    <div class="flex">
+    <div class="flex fixed">
         <div class="alert alert-success " role="alert" >
             {%for message in messages%}
 
