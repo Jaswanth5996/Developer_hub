@@ -10,7 +10,7 @@
         <li>Role : {{object.role}}</li>
     </ul>
     {% if object.author|stringformat:"s" == user|stringformat:"s" %}
-    <button><a href="{%url  'delete' object.pk%}">Delete</a></button>
+    <button class="btn btn-primary btn-sm" style="border-radius: 6px;"><a href="{%url  'delete' object.pk%}"style="text-decoration: none;color: white;">Delete</a></button>
     {%endif%}
 
     <br>
