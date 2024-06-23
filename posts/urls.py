@@ -22,7 +22,7 @@ urlpatterns = [
     path("login", LoginView, name="login"),
     path("signup", SignupView, name="signup"),
     path("logout", LogoutView, name="logout"),
-    path("fiter", SpecialView, name="filter"),
+    path("filter", SpecialView, name="filter"),
     path("detail/<int:pk>", Detailview.as_view(), name="detail"),
     path("detail/<int:pk>/delete", Deleteview.as_view(), name="delete"),
 ]

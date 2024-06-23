@@ -22,15 +22,8 @@ class SignupForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2"]
 
 
-class Search(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ["author"]
-        widgets = {
-            "author": forms.TextInput(
-                attrs={"class": "small-input", "placeholder": "search for article(s).."}
-            ),
-        }
-        labels = {
-            "author": "",
-        }
+class Search(forms.Form):
+    author = forms.CharField(
+        widget=forms.TextInput(attrs={"class": "small-input", "placeholder": "search for article(s).."}),
+        label=""
+    )

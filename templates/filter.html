@@ -3,15 +3,6 @@
 <bR>
 {%if messages%}
 <br>
-<div class="container">
-    <div class="alert alert-danger" role="alert" style="width: 200px;text-align: center;margin-left: 500px;">
-        {%for message in messages%}
-
-        {{message}} {{name}}
-
-        {%endfor%}
-    </div>
-</div>
 {%endif%}
 <div class="container" style="border: 2px solid black;">
     {%for p in posts%}
@@ -19,9 +10,8 @@
     <div style="border: 2px solid black;padding-left: 30px;">
         <h2 align="center">{{p.title}}</h2>
         <ul>
-            <li>Author : {{p.author}}</li>
-            <li>Content : {{p.content}}</li>
-            <li>Role : {{p.role}}</li>
+            <li>Author : {{p.username}}</li>
+            <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.id%}">show more...</a></li>
         </ul>
     </div>
     <br>

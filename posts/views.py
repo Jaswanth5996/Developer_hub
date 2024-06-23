@@ -27,10 +27,6 @@ def my_view(request):
 class Detailview(DetailView):
     template_name = "detail.html"
     model = Post
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user.username
-        return context
 
 
 class Deleteview(DeleteView):
@@ -117,11 +113,11 @@ def SpecialView(request):
             posts = filter_post(name)
             print(posts)
             if posts != []:
+                messages.success(request, '''Search results for "'''+ name+'''"''')
                 context = {"posts": posts, "search_form": form, "name": name}
                 return render(request, "filter.html", context)
-            else:
-                messages.error(request, "Author not found.. Viewing all posts")
-                posts = Post.objects.all()
-                form = Search()
-                context = {"search_form": form, "posts": posts}
-                return render(request, "view_posts.html", context)
+    messages.error(request, "Author not found.. Viewing all posts")
+    posts = Post.objects.all()
+    form = Search()
+    context = {"search_form": form, "posts": posts}
+    return render(request, "view_posts.html", context)
