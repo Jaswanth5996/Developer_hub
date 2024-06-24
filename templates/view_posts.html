@@ -1,12 +1,11 @@
 {%extends "base.html"%}
 {%block content%}
-<br><br>
 <div class="container">
-    <h1 style="font-weight:bold;">{{head}}</h1>
-    <a href="{%url 'posts'%}" ><button class="btn btn-primary btn-sm m-3 ms-0" style="border-radius: 6px;">Add New Post</button></a>
+    <h1 style="font-weight:bold;background-color: #fcfcfc">{{head}}</h1>
+    <a href="{%url 'posts'%}" ><button class="btn btn-primary btn-sm ms-6 mb-4 mt-2" style="border-radius: 6px;">Add New Post</button></a>
     {%for p in posts%}
-    <br>
-    <div style="border: 2px solid black;padding: 10px;border-radius: 20px;">
+    <br> 
+    <div style="border: 2px solid black;padding: 10px;border-radius: 20px;" class="posts">
     <h1 align="center" style="font-weight:bolder;"><a href="{%url 'detail' p.pk%}" style="text-decoration: none;"> {{p.title}}</a></h1>
     <ul>
         <li>Author : {{p.author}}</li>

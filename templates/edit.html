@@ -5,7 +5,7 @@
 <form method="post">
     {%csrf_token%}
     <h2>{{heading}}</h2>
-    {{form|crispy}}
+    {{form|crispy}}  
     <button type="submit" class="btn btn-primary btn-sm" style="border-radius: 6px;">update</button>
     <button class="btn btn-primary btn-sm" style="border-radius: 6px;"><a href="{%url 'home'%}" style="text-decoration: none;color: white;">cancel</a></button>
 </form>

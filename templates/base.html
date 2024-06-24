@@ -7,12 +7,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Blogapp</title>
     <style>
+        body {
+            background-color: #fcfcfc;
+        }
+        .posts
+        {
+            background-color: white;
+        }
+        nav{
+            background-color: #8d8d8d;
+        }
         *
         {
             font-family: kanit;
             font-size: large;
+
         }
         .flex {
             justify-content: center;
@@ -25,8 +37,8 @@
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<body><span class="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light text-bg-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">BlogApp</a>
             <button class="navbar-toggler" type="button" onclick="myFunction()" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +88,7 @@
             </div>
         </div>
     </nav>
+    </span>
     
     <br><br>
     
@@ -103,6 +116,8 @@
         </div>
     </div>
     {%endif%}
+    {%else%}
+    <br><br>
     {%endif%}
 
     {%block content%}
