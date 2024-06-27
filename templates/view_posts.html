@@ -1,5 +1,11 @@
 {%extends "base.html"%}
 {%block content%}
+{%if profile%}
+{%include 'profile.html'%}
+<section style="background-color: #eee;">
+{%else%}
+<br><br>
+{%endif%}
 <div class="container">
     <h1 style="font-weight:bold;background-color: #fcfcfc">{{head}}</h1>
     <a href="{%url 'posts'%}" ><button class="btn btn-primary btn-sm ms-6 mb-4 mt-2" style="border-radius: 6px;">Add New Post</button></a>
@@ -18,4 +24,5 @@
     {%endfor%}
     <br>
 </div>
+</section>
 {%endblock%}

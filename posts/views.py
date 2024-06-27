@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post, Detail
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .forms import BlogPostForm, RoleForm, SignupForm, Search
 from django.views.generic.edit import UpdateView
@@ -37,13 +38,14 @@ class Deleteview(DeleteView):
 @login_required(login_url="login")
 def post_view(request):
     posts = Post.objects.filter(author=request.user)
+    detail=User.objects.filter(username=request.user)
     print(posts)
     if len(posts)==0:
         head="Nothing to show"
     else:
         head="My Posts"
     form = Search()
-    return render(request, "view_posts.html", {"posts": posts, "search_form": form,"head":head})
+    return render(request, "view_posts.html", {"posts": posts,"detail":detail,  "search_form": form,"head":head,"profile":True})
 
 
 def home_view(request):

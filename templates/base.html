@@ -66,7 +66,7 @@
         
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_post' %}">My posts</a>
+                        <a class="nav-link" href="{% url 'user_post' %}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -117,7 +117,6 @@
     </div>
     {%endif%}
     {%else%}
-    <br><br>
     {%endif%}
 
     {%block content%}
