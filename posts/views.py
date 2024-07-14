@@ -43,9 +43,10 @@ def post_view(request):
     if len(posts)==0:
         head="Nothing to show"
     else:
+        post_count=len(posts)
         head="My Posts"
     form = Search()
-    return render(request, "view_posts.html", {"posts": posts,"detail":detail,  "search_form": form,"head":head,"profile":True})
+    return render(request, "view_posts.html", {"posts": posts,"detail":detail,  "search_form": form,"head":head,"profile":True,"post_count":post_count})
 
 
 def home_view(request):

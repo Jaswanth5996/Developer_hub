@@ -80,10 +80,10 @@ WSGI_APPLICATION = "blog.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'services_ujjk',           # Database name
-        'USER': 'excorcist',               # Database username
-        'PASSWORD': 'JKJGWf5BtK7Won2ytOKKZ9HtszvjZi3T',  # Database password
-        'HOST': 'dpg-cpfamvn109ks73bgc05g-a.oregon-postgres.render.com',  # Database host
+        'NAME': 'pro_database_1',           # Database name
+        'USER': 'excorcist_1',               # Database username
+        'PASSWORD': 'jkcoCDw6tk2nPpSEhSAOWDufiGMdN26x',  # Database password
+        'HOST': 'dpg-cq3bv04s1f4s73fdi3c0-a.oregon-postgres.render.com',  # Database host
         'PORT': '5432',                    # Database port
     }
 }

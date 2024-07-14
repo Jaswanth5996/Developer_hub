@@ -82,7 +82,9 @@
                 </ul>
                 <form class="d-flex" role="search" method="post" action="{% url 'filter' %}" >
                     {% csrf_token %}
+                    <span class="pt-1">
                     {{ search_form }}
+                    </span>
                     <button class="btn btn-outline-success" type="submit" style="margin-left: 6px;">Search</button>
                 </form>
             </div>
