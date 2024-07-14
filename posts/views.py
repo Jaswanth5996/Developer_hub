@@ -41,6 +41,7 @@ def post_view(request):
     detail=User.objects.filter(username=request.user)
     print(posts)
     if len(posts)==0:
+        post_count=0
         head="Nothing to show"
     else:
         post_count=len(posts)
