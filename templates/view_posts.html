@@ -18,8 +18,11 @@
         <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.pk%}"> show more...</a></li>
         <li>Role : {{p.role}}</li>
     </ul>
+    {%if profile%}
     <a href="{%url 'edit' p.pk%}"><button class="btn btn-primary btn-sm" style="border-radius: 6px;">Edit Post</button></a>
     <br><br>
+    {%endif%}
+    
     </div>
     {%endfor%}
     <br>

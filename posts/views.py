@@ -59,7 +59,7 @@ class Update_view(LoginRequiredMixin, UpdateView):
     login_url = "login"
     model = Post
     template_name = "edit.html"
-    fields = ["title", "content"]
+    fields = ["title", "content","genre"]
     success_url = "/"
     heading = "Edit Post"
 
@@ -77,6 +77,7 @@ def add_role(request):
 
 
 def LoginView(request):
+    login_fail=False
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -87,8 +88,8 @@ def LoginView(request):
             messages.success(request, "Welcome back "+username+" !")
             return redirect("home")
         else:
-            messages.error(request, "Invalid username or password.")
-    return render(request, "login.html")
+            login_fail=True
+    return render(request, "login.html",{"login_fail":login_fail})
 
 
 def SignupView(request):

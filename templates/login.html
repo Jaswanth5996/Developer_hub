@@ -14,6 +14,10 @@
             <div class="form-group">
                 <input type="password" name="password" placeholder="Password" required class="form-control">
             </div>
+            {%if login_fail%}
+            <span style="color:red;">invalid username or password</span>
+            {%endif%}
+            <br>
             <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
     </div>
