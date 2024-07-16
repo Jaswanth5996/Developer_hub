@@ -11,13 +11,13 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .utils import filter_post
-
-
 def my_view(request):
     if request.method == "POST":
         form = BlogPostForm(request.POST)
         if form.is_valid():
-            form.save()
+            p=form.save(commit=False)
+            p.author=request.user
+            p.save()
             return redirect("home")
     else:
         form = BlogPostForm()
@@ -116,10 +116,9 @@ def SpecialView(request):
             name = form.cleaned_data["author"]
             print(name)
             posts = filter_post(name)
-            print(posts)
             if posts != []:
                 messages.success(request, '''Search results for "'''+ name+'''"''')
-                context = {"posts": posts, "search_form": form, "name": name}
+                context = {"posts": posts, "search_form": form, "name": name,"found":True,"result":name}
                 return render(request, "filter.html", context)
     messages.error(request, "Author not found.. Viewing all posts")
     posts = Post.objects.all()

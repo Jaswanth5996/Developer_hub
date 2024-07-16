@@ -11,6 +11,7 @@ from .views import (
     Detailview,
     Deleteview,
     home_view,
+
 )
 
 urlpatterns = [
