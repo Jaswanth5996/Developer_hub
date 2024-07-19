@@ -10,7 +10,10 @@
         <h2 align="center">{{p.title}}</h2>
         <ul>
             <li>Author : {{p.username}}</li>
+            {%if found%}
             <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.id%}">show more...</a></li>
+            {%endif%}
+            
         </ul>
     </div>
     <br>

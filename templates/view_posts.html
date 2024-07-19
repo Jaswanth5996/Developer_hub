@@ -7,19 +7,22 @@
 <br><br>
 {%endif%}
 <div class="container">
-    <h1 style="font-weight:bold;background-color: #fcfcfc">{{head}}</h1>
+    <h1 style="font-weight:bold;background-color: #fcfcfc,color=#0080FF;">{{head}}</h1>
     <a href="{%url 'posts'%}" ><button class="btn btn-primary btn-sm ms-6 mb-4 mt-2" style="border-radius: 6px;">Add New Post</button></a>
     {%for p in posts%}
     <br> 
     <div style="border: 2px solid black;padding: 10px;border-radius: 20px;" class="posts">
     <h1 align="center" style="font-weight:bolder;"><a href="{%url 'detail' p.pk%}" style="text-decoration: none;"> {{p.title}}</a></h1>
     <ul>
-        <li>Author : {{p.author}}</li>
+        <li>Author : {{p.author.email}}</li>
         <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.pk%}"> show more...</a></li>
         <li>Role : {{p.role}}</li>
     </ul>
+    {%if profile%}
     <a href="{%url 'edit' p.pk%}"><button class="btn btn-primary btn-sm" style="border-radius: 6px;">Edit Post</button></a>
     <br><br>
+    {%endif%}
+    
     </div>
     {%endfor%}
     <br>
