@@ -21,3 +21,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Profile(models.Model):
+    title="image"
+    profile_photo=models.FileField(upload_to="static/")
+    def __str__(self):
+        return self.title

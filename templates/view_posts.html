@@ -9,12 +9,12 @@
 <div class="container">
     <h1 style="font-weight:bold;background-color: #fcfcfc,color=#0080FF;">{{head}}</h1>
     <a href="{%url 'posts'%}" ><button class="btn btn-primary btn-sm ms-6 mb-4 mt-2" style="border-radius: 6px;">Add New Post</button></a>
-    {%for p in posts%}
+    {%for p in page_obj%}
     <br> 
     <div style="border: 2px solid black;padding: 10px;border-radius: 20px;" class="posts">
     <h1 align="center" style="font-weight:bolder;"><a href="{%url 'detail' p.pk%}" style="text-decoration: none;"> {{p.title}}</a></h1>
     <ul>
-        <li>Author : {{p.author.email}}</li>
+        <li>Author : {{p.author.username}}</li>
         <li>Content : {{p.content|slice:":800"}} <a href="{%url 'detail' p.pk%}"> show more...</a></li>
         <li>Role : {{p.role}}</li>
     </ul>
@@ -22,16 +22,29 @@
     <a href="{%url 'edit' p.pk%}"><button class="btn btn-primary btn-sm" style="border-radius: 6px;">Edit Post</button></a>
     <br><br>
     {%endif%}
-    
     </div>
     {%endfor%}
+    <div class="paginator">
+    {%if page_obj.has_previous%}
+    <a href="?page=1">&laquo;</a>
+    <a href="?page={{page_obj.previous_page_number}}">previous</a>
+    {%endif%}
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+    {% endif %}
+    </div>
     <br>
 </div>
 </section>
+{%if not profile%}
 <div class="footer">
     <div class="heading">
         <br />
-        <h2>BlogSite<sup>™</sup></h2>
+        <h2>BlogApp<sup>™</sup></h2>
     </div>
     <div class="content">
         <div class="blog-management">
@@ -69,4 +82,5 @@
         <hr />
         © 2024 BlogSite.
     </footer>
+{%endif%}
 {%endblock%}

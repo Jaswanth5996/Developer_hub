@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post, Detail
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from .forms import BlogPostForm, RoleForm, SignupForm, Search
+from .forms import BlogPostForm, RoleForm, SignupForm, Search,profile
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView, DeleteView
 from django.urls import reverse_lazy
@@ -11,6 +11,9 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .utils import filter_post
+from django.core.paginator import Paginator
+
+@login_required(login_url="login")
 def my_view(request):
     if request.method == "POST":
         form = BlogPostForm(request.POST)
@@ -21,8 +24,9 @@ def my_view(request):
             return redirect("home")
     else:
         form = BlogPostForm()
+        pro=profile()
 
-    return render(request, "home.html", {"form": form})
+    return render(request, "home.html", {"form": form,"pro":pro})
 
 
 class Detailview(DetailView):
@@ -47,13 +51,16 @@ def post_view(request):
         post_count=len(posts)
         head="My Posts"
     form = Search()
-    return render(request, "view_posts.html", {"posts": posts,"detail":detail,  "search_form": form,"head":head,"profile":True,"post_count":post_count})
+    return render(request, "view_posts.html", {"page_obj": posts,"detail":detail,  "search_form": form,"head":head,"profile":True,"post_count":post_count})
 
 
 def home_view(request):
     posts = Post.objects.all()
+    paginator=Paginator(posts,4)
+    page_number = request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
     form = Search()
-    return render(request, "view_posts.html", {"posts": posts, "search_form": form,"head":"Blog Posts"})
+    return render(request, "view_posts.html", {"posts": posts, "search_form": form,"head":"Blog Posts","page_obj":page_obj})
 
 class Update_view(LoginRequiredMixin, UpdateView):
     login_url = "login"

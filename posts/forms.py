@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Detail
+from .models import Post, Detail,Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -27,3 +27,8 @@ class Search(forms.Form):
         widget=forms.TextInput(attrs={"class": "small-input", "placeholder": "search for article(s).."}),
         label=""
     )
+
+class profile(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=('profile_photo',)
