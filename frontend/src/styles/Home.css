@@ -1,0 +1,96 @@
+.home-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  color: #222;
+  font-weight: 700;
+}
+
+.no-posts-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 40px;
+}
+
+/* Grid container for posts */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Fixed size post cards */
+.post-card {
+  border: 1px solid #333;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+
+  width: 280px;        /* fixed width */
+  height: 350px;       /* fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.post-title {
+  margin-bottom: 8px;
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.post-author {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Limit content area with scroll if too long */
+.post-content {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 12px;
+  line-height: 1.5;
+
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling (optional) */
+.post-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.post-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.post-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  align-self: flex-start;
+}
+
+.post-link:hover {
+  color: #0056b3;
+}

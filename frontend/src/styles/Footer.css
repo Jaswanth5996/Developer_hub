@@ -1,0 +1,32 @@
+/* Footer.css */
+.footer {
+  background-color: #343a40; /* Dark gray background */
+  color: #f8f9fa; /* Light text */
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer a {
+  color: #f8f9fa;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ffc107; /* Bootstrap’s warning color (gold) on hover */
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .footer {
+    font-size: 12px;
+    padding: 15px 5px;
+  }
+}

@@ -1,0 +1,38 @@
+.navbar {
+  background-color: #0d6efd; /* Bootstrap primary blue */
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 5px rgba(13, 110, 253, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: white !important;
+  letter-spacing: 1.2px;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  filter: invert(100%);
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #d0e2ff !important;
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1140px;
+}

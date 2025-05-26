@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Detail,Profile
+from .models import Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -7,13 +7,7 @@ from django.contrib.auth.models import User
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "content","role", "genre"]
-
-
-class RoleForm(forms.ModelForm):
-    class Meta:
-        model = Detail
-        fields = ["role"]
+        fields = ["title", "content", "genre","image_url"]
 
 
 class SignupForm(UserCreationForm):
@@ -27,8 +21,3 @@ class Search(forms.Form):
         widget=forms.TextInput(attrs={"class": "small-input", "placeholder": "search for article(s).."}),
         label=""
     )
-
-class profile(forms.ModelForm):
-    class Meta:
-        model=Profile
-        fields=('profile_photo',)

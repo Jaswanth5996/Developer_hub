@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-mphl95yw7@d!$b_)20#%r@0ddj_o@hm0aq546wm52=r10ewb)="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,10 +40,23 @@ INSTALLED_APPS = [
     "posts.apps.PostsConfig",
     "crispy_forms",
     "crispy_bootstrap5",
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders'
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        # Add token auth or JWT if needed
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -52,7 +65,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = "blog.urls"
 
 TEMPLATES = [
@@ -77,16 +91,25 @@ WSGI_APPLICATION = "blog.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'service_2',           # Database name
+#         'USER': 'excorcist_3',               # Database username
+#         'PASSWORD': 'DnCmAzxxWGmeDO3f1j0zd8uCqufR85C2',  # Database password
+#         'HOST': 'dpg-crqkvt88fa8c73940io0-a.oregon-postgres.render.com',  # Database host
+#         'PORT': '5432',                    # Database port
+#     }
+# }
+# settings.py
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pro_database_1',           # Database name
-        'USER': 'excorcist_1',               # Database username
-        'PASSWORD': 'jkcoCDw6tk2nPpSEhSAOWDufiGMdN26x',  # Database password
-        'HOST': 'dpg-cq3bv04s1f4s73fdi3c0-a.oregon-postgres.render.com',  # Database host
-        'PORT': '5432',                    # Database port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation

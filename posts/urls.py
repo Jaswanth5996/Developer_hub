@@ -1,29 +1,18 @@
 from django.urls import path
 from .views import (
-    my_view,
-    post_view,
-    Update_view,
-    add_role,
-    LoginView,
+    PostListCreateAPIView,
+    PostDetailAPIView,
+    MyPostsAPIView,
+    UserDetailAPIView,
     SignupView,
-    LogoutView,
-    SpecialView,
-    Detailview,
-    Deleteview,
-    home_view,
-
+    LoginView,
 )
 
 urlpatterns = [
-    path("user_post", post_view, name="user_post"),
-    path("",home_view,name="home"),
-    path("posts", my_view, name="posts"),
-    path("edit/<int:pk>", Update_view.as_view(), name="edit"),
-    path("role", add_role, name="role"),
-    path("login", LoginView, name="login"),
-    path("signup", SignupView, name="signup"),
-    path("logout", LogoutView, name="logout"),
-    path("filter", SpecialView, name="filter"),
-    path("detail/<int:pk>", Detailview.as_view(), name="detail"),
-    path("detail/<int:pk>/delete", Deleteview.as_view(), name="delete"),
+    path('api/posts/', PostListCreateAPIView.as_view(), name='api-post-list-create'),
+    path('api/posts/<int:pk>/', PostDetailAPIView.as_view(), name='api-post-detail'),
+    path('api/my-posts/', MyPostsAPIView.as_view(), name='api-my-posts'),
+    path('api/users/<int:pk>/', UserDetailAPIView.as_view(), name='api-user-detail'),
+    path('api/signup/', SignupView.as_view(), name='api-signup'),
+    path('api/login/', LoginView.as_view(), name='api-login'),
 ]

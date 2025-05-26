@@ -1,29 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-class Detail(models.Model):
-    role = models.TextField(max_length=10)
+genres = [
+    ("action", "Action"),
+    ("drama", "Drama"),
+    ("comedy", "Comedy"),
+    ("history", "History"),
+    ("news", "News"),
+    ("thriller", "Thriller"),
+    ("horror", "Horror"),
+    ("fantasy", "Fantasy")
+]
 
-    def __str__(self):
-        return self.role
 
-genres=[("action","Action"),("drama","Drama"),("comedy","Comedy"),("history","History"),
-        ("news","News"),("thriller","Thriller"),("horror","Horror")]
 class Post(models.Model):
     title = models.CharField(
-        max_length=20,
+        max_length=50,
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(default="New")
-    role = models.ForeignKey(Detail, on_delete=models.CASCADE)
-    genre=models.CharField(choices=genres,default="")
-
-    def __str__(self):
-        return self.title
-    
-class Profile(models.Model):
-    title="image"
-    profile_photo=models.FileField(upload_to="static/")
+    genre = models.CharField(choices=genres, null=True,max_length=10,blank=True)
+    image_url=models.URLField(null=True)
     def __str__(self):
         return self.title
